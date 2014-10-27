@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <img id="brand" src="img/brand.png" width="100px" alt=""/><h1>Shin IPPT Calculator KAI</h1>
+        <h1 id="brandHeader">Shin IPPT Calculator KAI</h1>
     </header>
 
     <main>
@@ -64,12 +64,12 @@
             </h2>
         </section>
 
-        <section class="stationContainer disabled">
+        <section id="stationSitUp" class="stationContainer disabled">
             <div class="inputLabelContainer">
                 <label for="inputSitUp">Sit-up</label>
             </div>
             <div class="inputContainer">
-                <select class="inputStation" id="inputSitUp" name="inputSitUp" disabled="disabled">
+                <select class="inputStation" id="inputSitUp" name="inputSitUp">
                 </select>
             </div>
             <div class="inputLabelFeedbackContainer">
@@ -78,12 +78,12 @@
             <label class="labelRecommendation" id="recommendationSitUp"></label>
         </section>
 
-        <section class="stationContainer disabled">
+        <section id="stationPushUp" class="stationContainer disabled">
             <div class="inputLabelContainer">
                 <label for="inputPushUp">Push-up</label>
             </div>
             <div class="inputContainer">
-                <select class="inputStation" id="inputPushUp" name="inputPushUp" disabled="disabled">
+                <select class="inputStation" id="inputPushUp" name="inputPushUp">
                 </select>
             </div>
             <div class="inputLabelFeedbackContainer">
@@ -92,15 +92,15 @@
             <label class="labelRecommendation" id="recommendationPushUp"></label>
         </section>
 
-        <section class="stationContainer disabled lastRow">
+        <section id="stationRun" class="stationContainer disabled lastRow">
             <div class="inputLabelContainer">
                 <label>2.4 km</label>
             </div>
             <div class="inputContainer">
-                <select class="inputStation input24Run" id="input24RunMin" name="input24RunMin" disabled="disabled">
+                <select class="inputStation input24Run" id="input24RunMin" name="input24RunMin">
                 </select>
 
-                <select class="inputStation input24Run" id="input24RunSec" name="input24RunSec" disabled="disabled">
+                <select class="inputStation input24Run" id="input24RunSec" name="input24RunSec">
                     <option value="0">00 sec</option>
                     <option value="10">10 sec</option>
                     <option value="20">20 sec</option>
