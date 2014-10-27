@@ -1,114 +1,125 @@
-<!--
-IPPT Calculator KAI (c)
-
-IPPT point calculator and recommendation built for CS4249 by Yi Wei
--->
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <meta name="description" content="IPPT Calculator KAI">
-    <meta name="keywords" content="IPPT, calculator, IPPT award, IPPT Calculator, IPPT recommendation">
+    <meta name="description" content="Shin IPPT Calculator KAI">
+    <meta name="keywords" content="IPPT, calculator, IPPT award, IPPT Calculator, IPPT recommendation, Shin IPPT Calculator KAI">
     <meta name="author" content="Ting Yi Wei">
 
-    <title>IPPT Score Calculator KAI</title>
+    <title>Shin IPPT Calculator KAI</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css"/>
     <link rel="stylesheet" href="css/style_min.css"/>
 </head>
 <body>
     <header>
-        <h1 id="title">IPPT Score Calculator KAI</h1>
+        <h1>Shin IPPT Calculator KAI</h1>
     </header>
 
-    <div id="IPPTContainer">
-        <div class="labelContainer">
-            <label for="inputAge">Age</label>
-        </div>
-        <div class="inputContainer">
-            <input id="inputAge" type="number" placeholder="18" min="0" max="60" autofocus="autofocus" onchange="userInputListener('inputAge')"/>
-        </div>
-
-        <div class="labelContainer">
-            <label>Award type</label>
-        </div>
-        <div class="inputContainer">
-            <input type="radio" id="passNoIncentive" name="award" value="pass"/>
-            <label class="labelRadioButton" for="passNoIncentive">Pass</label>
-
-            <input type="radio" id="passIncentive" name="award" value="passIncentive"/>
-            <label class="labelRadioButton" for="passIncentive">Pass (incentive)</label>
-
-            <input type="radio" id="passSilver" name="award" value="silver"/>
-            <label class="labelRadioButton" for="passSilver">Silver</label>
-
-            <input type="radio" id="passGold" name="award" value="gold" checked="checked"/>
-            <label for="passGold">Gold</label>
-        </div>
-
-        <div class="labelContainer">
-            <label>Are you a commando, guardsman or diver?</label>
-        </div>
-        <div class="inputContainer">
-            <input id="elite" type="checkbox"/>
-            <label id="labelElite" for="elite">No</label>
-        </div>
-        
-        <div class="labelContainer">
-            <label for="inputSitup">Situps</label>
-        </div>
-        <div class="inputContainer">
-            <input id="inputSitup" type="number" placeholder="40" min="0" max="120" onchange="userInputListener('inputSitup')"/>
-        </div>
-        <label class="recommendationLabel" id="recommendationSitup"></label>
-
-        <div class="labelContainer">
-            <label for="inputPushup">Pushups</label>
-        </div>
-        <div class="inputContainer">
-            <input id="inputPushup" type="number" placeholder="40" min="0" max="120" onchange="userInputListener('inputPushup')"/>
-        </div>
-        <label class="recommendationLabel" id="recommendationPushup"></label>
-
-        <div class="labelContainer">
-            <label for="input24Min">2.4 km run</label>
-        </div>
-        <div class="inputContainer">
-            <input id="input24Min" type="number" placeholder="9" min="0" max="60" onchange="userInputListener('input24Min')"/>
-            <input id="input24Sec" type="number" placeholder="40" min="0" max="59" onchange="userInputListener('input24Sec')"/>
-        </div>
-        <label class="recommendationLabel" id="recommendation24Run"></label>
-
-        <div id="resultsContainer">
-            <h2 class="messageUnsuccess" id="pointsTotal">Your score: 0</h2>
-
-            <div id="messageFeedback">
-                <span></span>
+    <main>
+        <section>
+            <div class="inputLabelContainer">
+                <label for="inputAge">Age</label>
             </div>
+            <div class="inputContainer">
+                <input id="inputAge" type="number" min="18" max="60" placeholder="18" autofocus="autofocus" onchange="determineAgeGroup()"/>
+            </div>
+            <div class="inputLabelFeedbackContainer">
+                <label id="feedbackAgeGroup">Age group: 1</label>
+            </div>
+        </section>
 
-            <h3>Individual station scores breakdown</h3>
+        <section>
+            <div class="inputLabelContainer">
+                <label>Award type</label>
+            </div>
+            <div class="inputContainer">
+                <input name="inputAward" id="inputAwardPass" type="radio" value="pass"/>
+                <label class="labelRadio" for="inputAwardPass">Pass</label>
 
-            <ul>
-                <li>
-                    <div class="stationLabel"><span><strong>Situp: </strong></span></div>
-                    <span id="pointSitup">0</span>
-                </li>
-                <li>
-                    <div class="stationLabel"><span><strong>Pushup: </strong></span></div>
-                    <span id="pointPushup">0</span>
-                </li>
-                <li>
-                    <div class="stationLabel"><span><strong>2.4km run: </strong></span></div>
-                    <span id="point24Run">0</span>
-                </li>
-            </ul>
-        </div>
-    </div>
+                <input name="inputAward" id="inputAwardPassIncentive" type="radio" value="passIncentive"/>
+                <label class="labelRadio" for="inputAwardPass">Pass (incentive)</label>
 
-    <!--<footer></footer>-->
+                <input name="inputAward" id="inputAwardPassSilver" type="radio" value="silver"/>
+                <label class="labelRadio" for="inputAwardPass">Silver</label>
 
-    <script src="js/ippt_calculator_min.js"></script>
+                <input name="inputAward" id="inputAwardPassGold" type="radio" value="gold"/>
+                <label class="labelRadio" for="inputAwardPass">Gold</label>
+
+                <input name="inputAward" id="inputAwardPassGoldElite" type="radio" value="goldElite" title="Commando, guardsman or diver"/>
+                <label class="labelRadio" for="inputAwardPass" title="Commando, guardsman or diver">Gold Elite<sup>*</sup></label>
+            </div>
+            <div class="inputLabelFeedbackContainer">
+                <label id="feedbackAward"></label>
+            </div>
+            <label class="labelDetails" id="summaryDetails"><sup>*</sup>Commando, guardsman or diver</label>
+        </section>
+
+        <section id="instructionContainer">
+            <h2>
+                Enter your age and choose desired award type above to begin :)
+            </h2>
+        </section>
+
+        <section class="stationContainer disabled">
+            <div class="inputLabelContainer">
+                <label for="inputSitUp">Sit-up</label>
+            </div>
+            <div class="inputContainer">
+                <select class="inputStation" id="inputSitUp" name="inputSitUp" disabled="disabled">
+                </select>
+            </div>
+            <div class="inputLabelFeedbackContainer">
+                <label id="feedbackSitUp">0 points</label>
+            </div>
+            <label class="labelRecommendation" id="recommendationSitUp"></label>
+        </section>
+
+        <section class="stationContainer disabled">
+            <div class="inputLabelContainer">
+                <label for="inputPushUp">Push-up</label>
+            </div>
+            <div class="inputContainer">
+                <select class="inputStation" id="inputPushUp" name="inputPushUp" disabled="disabled">
+                </select>
+            </div>
+            <div class="inputLabelFeedbackContainer">
+                <label id="feedbackPushUp">0 points</label>
+            </div>
+            <label class="labelRecommendation" id="recommendationPushUp"></label>
+        </section>
+
+        <section class="stationContainer disabled lastRow">
+            <div class="inputLabelContainer">
+                <label>2.4 km</label>
+            </div>
+            <div class="inputContainer">
+                <select class="inputStation input24Run" id="input24RunMin" name="input24RunMin" disabled="disabled">
+                </select>
+
+                <select class="inputStation input24Run" id="input24RunSec" name="input24RunSec" disabled="disabled">
+                    <option value="0">00 sec</option>
+                    <option value="10">10 sec</option>
+                    <option value="20">20 sec</option>
+                    <option value="30">30 sec</option>
+                    <option value="40">40 sec</option>
+                    <option value="50">50 sec</option>
+                </select>
+            </div>
+            <div class="inputLabelFeedbackContainer">
+                <label id="feedbackRun">0 points</label>
+            </div>
+            <label class="labelRecommendation" id="recommendationRun"></label>
+        </section>
+
+            <h2 id="feedbackTotalPoints">Your total points: 0</h2>
+    </main>
+
+    <footer>
+        <span id="copyright">Designed and developed by Avan & <a href="http://www.comp.nus.edu.sg/~a0087745/portfolio/" target="_blank">Yi Wei</a>. &copy 2014</span>
+    </footer>
+
+    <script src="js/IPPT_Calculator_min.js"></script>
     <script>(function(e,t,n,r,i,s,o){e["GoogleAnalyticsObject"]=i;e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},e[i].l=1*new Date;s=t.createElement(n),o=t.getElementsByTagName(n)[0];s.async=1;s.src=r;o.parentNode.insertBefore(s,o)})(window,document,"script","//www.google-analytics.com/analytics.js","ga");ga("create","UA-53294853-4","auto");ga("send","pageview")</script>
 </body>
 </html>
